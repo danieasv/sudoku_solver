@@ -47,11 +47,12 @@ class Sudoku_solver:
 
 
 
-    def verify(self,grid):
+    def verify(self,grid,y,x):
         is_solution = True
 
         # verify row
-        for row in grid:
+        for row in grid[:y,:]:
+            print(row)
             for num in range(1,10):
                 if not num in row:
                     is_solution = False
@@ -86,9 +87,10 @@ grid = np.array(grid)
 counter = np.count_nonzero(grid==0)
 start = time.time()
 
+grid =np.array( [[1,2,3],[4,5,6], [7,8,9] ])
 sod = Sudoku_solver(grid)
-sod.solve(grid,-1,-1)
+sod.verify(grid,1,1)
+#sod.solve(grid,-1,-1)
 end = time.time()
 
 print("Runtime with {} unknown: {}".format(counter,end - start))
-print(sod.grid)
